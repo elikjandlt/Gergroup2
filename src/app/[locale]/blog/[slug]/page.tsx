@@ -11,8 +11,11 @@ function makeStaticClient() {
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
-      headers: { "x-app-token": process.env.NEXT_PUBLIC_ERXES_APP_TOKEN ?? "" },
+      uri: "https://temuulenenkhmaa.next.erxes.io/gateway/graphql",
+      headers: {
+        "x-app-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRQb3J0YWxJZCI6IjhyZnBUaU9sRUYyZjEzcGxpaFRoRCIsImlhdCI6MTc4MjIxNTM5Mn0.lcC911AjgC0w0YR_GEDSzIbWEakXkCOauWT43vgiBuw",
+      },
     }),
   });
 }
