@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f5f7fa"/>
+  <rect x="300" y="220" width="200" height="160" rx="8" fill="#e5e8ed"/>
+  <path d="M360 300 L400 260 L440 300 L460 280 L480 320 H320 L340 280 Z" fill="#9ca3af"/>
+  <text x="400" y="420" font-family="Arial,sans-serif" font-size="20" fill="#666666" text-anchor="middle">Зураг</text>
+</svg>

@@ -1,0 +1,43 @@
+{
+  "motion_level": 3,
+  "visual_direction": "light-industrial",
+  "packages": [
+    "framer-motion",
+    "lenis",
+    "lucide-react",
+    "clsx",
+    "tailwind-merge",
+    "next-themes",
+    "react-intersection-observer"
+  ],
+  "shadcn_components": [
+    "button",
+    "card",
+    "input",
+    "textarea",
+    "separator",
+    "sheet"
+  ],
+  "custom_components": [
+    "Header",
+    "HeroSlider",
+    "PageHeader",
+    "ProductCard",
+    "ProjectCard",
+    "BlogCard",
+    "ContactForm",
+    "Footer",
+    "LanguageSwitcher",
+    "MobileNav",
+    "StatsCard"
+  ],
+  "animation_config": {
+    "core_library": "framer-motion",
+    "scroll_library": "lenis",
+    "text_animation": "framer-motion",
+    "page_transition": "framer-motion",
+    "ambient_system": "css",
+    "micro_interactions": "framer-motion",
+    "gsap_plugins": []
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "frame-a",
+      "name": "Homepage Option A - Faithful",
+      "type": "frame",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 3000,
+      "fill": "#FFFFFF",
+      "children": [
+        {
+          "id": "header-a",
+          "name": "Header",
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "children": [
+            {"id": "logo-a", "type": "text", "x": 80, "y": 28, "text": "EOSS MONGOLIA", "fontFamily": "Inter", "fontSize": 22, "fontWeight": 800, "fill": "#3D8B8B"},
+            {"id": "nav-a", "type": "text", "x": 520, "y": 32, "text": "Home  Products  About Us  Projects  Blog  Contact", "fontFamily": "Inter", "fontSize": 14, "fill": "#1A1A1A"},
+            {"id": "lang-a", "type": "text", "x": 1280, "y": 32, "text": "MN | EN", "fontFamily": "Inter", "fontSize": 14, "fill": "#3D8B8B"}
+          ]
+        },
+        {
+          "id": "hero-a",
+          "name": "Hero",
+          "type": "frame",
+          "x": 0,
+          "y": 80,
+          "width": 1440,
+          "height": 700,
+          "fill": "#F5F7FA",
+          "children": [
+            {"id": "hero-img-a", "type": "rectangle", "x": 0, "y": 0, "width": 1440, "height": 700, "fill": "#E5E8ED"},
+            {"id": "hero-title-a", "type": "text", "x": 200, "y": 250, "text": "Full range of aluminum solutions", "fontFamily": "Inter", "fontSize": 56, "fontWeight": 700, "fill": "#1A1A1A"},
+            {"id": "hero-sub-a", "type": "text", "x": 200, "y": 330, "text": "Energy-saving windows, doors and curtain wall systems", "fontFamily": "Inter", "fontSize": 20, "fill": "#666666"},
+            {"id": "hero-cta-a", "type": "rectangle", "x": 200, "y": 400, "width": 180, "height": 50, "fill": "#3D8B8B", "cornerRadius": 0},
+            {"id": "hero-cta-text-a", "type": "text", "x": 240, "y": 416, "text": "Get a Quote", "fontFamily": "Inter", "fontSize": 14, "fontWeight": 600, "fill": "#FFFFFF"}
+          ]
+        },
+        {
+          "id": "about-a",
+          "name": "About Teaser",
+          "type": "frame",
+          "x": 0,
+          "y": 780,
+          "width": 1440,
+          "height": 400,
+          "fill": "#FFFFFF",
+          "children": [
+            {"id": "about-title-a", "type": "text", "x": 120, "y": 100, "text": "About EOSS Mongolia", "fontFamily": "Inter", "fontSize": 36, "fontWeight": 700, "fill": "#1A1A1A"},
+            {"id": "about-text-a", "type": "text", "x": 120, "y": 170, "text": "We specialize in energy-efficient aluminum window, door and facade systems\nfor modern commercial and residential buildings across Mongolia.", "fontFamily": "Inter", "fontSize": 16, "fill": "#666666"},
+            {"id": "about-img-a", "type": "rectangle", "x": 820, "y": 60, "width": 500, "height": 280, "fill": "#E5E8ED"}
+          ]
+        },
+        {
+          "id": "products-a",
+          "name": "Products",
+          "type": "frame",
+          "x": 0,
+          "y": 1180,
+          "width": 1440,
+          "height": 700,
+          "fill": "#F5F7FA",
+          "children": [
+            {"id": "prod-title-a", "type": "text", "x": 120, "y": 60, "text": "Our Products", "fontFamily": "Inter", "fontSize": 36, "fontWeight": 700, "fill": "#1A1A1A"},
+            {"id": "card-1-a", "type": "rectangle", "x": 120, "y": 140, "width": 240, "height": 240, "fill": "#FFFFFF"},
+            {"id": "card-1-img-a", "type": "rectangle", "x": 120, "y": 140, "width": 240, "height": 160, "fill": "#E5E8ED"},
+            {"id": "card-1-text-a", "type": "text", "x": 140, "y": 320, "text": "Curtain Wall Series", "fontFamily": "Inter", "fontSize": 16, "fontWeight": 600, "fill": "#1A1A1A"},
+            {"id": "card-2-a", "type": "rectangle", "x": 400, "y": 140, "width": 240, "height": 240, "fill": "#FFFFFF"},
+            {"id": "card-2-img-a", "type": "rectangle", "x": 400, "y": 140, "width": 240, "height": 160, "fill": "#E5E8ED"},
+            {"id": "card-2-text-a", "type": "text", "x": 420, "y": 320, "text": "Casement Series", "fontFamily": "Inter", "fontSize": 16, "fontWeight": 600, "fill": "#1A1A1A"},
+            {"id": "card-3-a", "type": "rectangle", "x": 680, "y": 140, "width": 240, "height": 240, "fill": "#FFFFFF"},
+            {"id": "card-3-img-a", "type": "rectangle", "x": 680, "y": 140, "width": 240, "height": 160, "fill": "#E5E8ED"},
+            {"id": "card-3-text-a", "type": "text", "x": 700, "y": 320, "text": "Sliding Series", "fontFamily": "Inter", "fontSize": 16, "fontWeight": 600, "fill": "#1A1A1A"},
+            {"id": "card-4-a", "type": "rectangle", "x": 960, "y": 140, "width": 240, "height": 240, "fill": "#FFFFFF"},
+            {"id": "card-4-img-a", "type": "rectangle", "x": 960, "y": 140, "width": 240, "height": 160, "fill": "#E5E8ED"},
+            {"id": "card-4-text-a", "type": "text", "x": 980, "y": 320, "text": "Featured Series", "fontFamily": "Inter", "fontSize": 16, "fontWeight": 600, "fill": "#1A1A1A"},
+            {"id": "card-5-a", "type": "rectangle", "x": 1240, "y": 140, "width": 240, "height": 240, "fill": "#FFFFFF"},
+            {"id": "card-5-img-a", "type": "rectangle", "x": 1240, "y": 140, "width": 240, "height": 160, "fill": "#E5E8ED"},
+            {"id": "card-5-text-a", "type": "text", "x": 1260, "y": 320, "text": "International Series", "fontFamily": "Inter", "fontSize": 16, "fontWeight": 600, "fill": "#1A1A1A"}
+          ]
+        },
+        {
+          "id": "cta-a",
+          "name": "Contact CTA",
+          "type": "frame",
+          "x": 0,
+          "y": 1880,
+          "width": 1440,
+          "height": 300,
+          "fill": "#3D8B8B",
+          "children": [
+            {"id": "cta-title-a", "type": "text", "x": 120, "y": 100, "text": "Ready to start your project?", "fontFamily": "Inter", "fontSize": 36, "fontWeight": 700, "fill": "#FFFFFF"},
+            {"id": "cta-btn-a", "type": "rectangle", "x": 120, "y": 180, "width": 180, "height": 50, "fill": "#E40000"},
+            {"id": "cta-btn-text-a", "type": "text", "x": 155, "y": 198, "text": "Contact Us", "fontFamily": "Inter", "fontSize": 14, "fontWeight": 600, "fill": "#FFFFFF"}
+          ]
+        },
+        {
+          "id": "footer-a",
+          "name": "Footer",
+          "type": "frame",
+          "x": 0,
+          "y": 2180,
+          "width": 1440,
+          "height": 300,
+          "fill": "#353F4C",
+          "children": [
+            {"id": "footer-logo-a", "type": "text", "x": 120, "y": 60, "text": "EOSS MONGOLIA", "fontFamily": "Inter", "fontSize": 20, "fontWeight": 700, "fill": "#FFFFFF"},
+            {"id": "footer-copy-a", "type": "text", "x": 120, "y": 250, "text": "© 2026 EOSS Mongolia. All rights reserved.", "fontFamily": "Inter", "fontSize": 12, "fill": "#9CA3AF"}
+          ]
+        }
+      ]
+    }
+  ]
+}

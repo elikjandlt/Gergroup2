@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "siteName": "eossmongolia",
+    "visualDirection": "light-industrial",
+    "motionLevel": 3,
+    "defaultLocale": "mn",
+    "locales": ["mn", "en"]
+  },
+  "colors": {
+    "brand": {
+      "primary": "#3D8B8B",
+      "secondary": "#E40000",
+      "primaryDark": "#2E6A6A"
+    },
+    "neutral": {
+      "50": "#FFFFFF",
+      "100": "#F5F7FA",
+      "200": "#E5E8ED",
+      "300": "#D1D5DB",
+      "400": "#9CA3AF",
+      "500": "#666666",
+      "600": "#4B5563",
+      "700": "#374151",
+      "800": "#1F2937",
+      "900": "#1A1A1A"
+    },
+    "semantic": {
+      "background": "#FFFFFF",
+      "foreground": "#1A1A1A",
+      "card": "#FFFFFF",
+      "cardForeground": "#1A1A1A",
+      "popover": "#F0F4F9",
+      "popoverForeground": "#1A1A1A",
+      "primary": "#3D8B8B",
+      "primaryForeground": "#FFFFFF",
+      "secondary": "#E40000",
+      "secondaryForeground": "#FFFFFF",
+      "muted": "#F5F7FA",
+      "mutedForeground": "#666666",
+      "accent": "#E40000",
+      "accentForeground": "#FFFFFF",
+      "border": "#E5E8ED",
+      "input": "#FFFFFF",
+      "ring": "#3D8B8B",
+      "success": "#22C55E",
+      "warning": "#F59E0B",
+      "destructive": "#EF4444"
+    }
+  },
+  "typography": {
+    "families": {
+      "display": "Inter",
+      "body": "Inter",
+      "mono": "JetBrains Mono"
+    },
+    "scale": {
+      "xs": 12,
+      "sm": 13,
+      "base": 14,
+      "lg": 16,
+      "xl": 18,
+      "2xl": 20,
+      "3xl": 24,
+      "4xl": 32,
+      "5xl": 40,
+      "6xl": 42,
+      "7xl": 48,
+      "8xl": 56
+    }
+  },
+  "spacing": {
+    "scale": {
+      "0": 0,
+      "1": 4,
+      "2": 8,
+      "3": 12,
+      "4": 16,
+      "5": 20,
+      "6": 24,
+      "8": 32,
+      "10": 40,
+      "12": 48,
+      "16": 64,
+      "20": 80,
+      "24": 96,
+      "32": 128
+    },
+    "layout": {
+      "pageMax": 1280,
+      "sectionX": 80,
+      "sectionY": 80,
+      "headerX": 60,
+      "headerY": 20
+    }
+  },
+  "radius": {
+    "sm": 0,
+    "md": 0,
+    "lg": 0,
+    "xl": 0,
+    "full": 9999
+  },
+  "shadows": {
+    "sm": "0 1px 2px 0 rgba(0,0,0,0.05)",
+    "md": "0 4px 12px rgba(0,0,0,0.08)",
+    "lg": "0 12px 32px rgba(0,0,0,0.12)"
+  },
+  "motion": {
+    "duration": {
+      "fast": 0.15,
+      "normal": 0.3,
+      "slow": 0.6,
+      "entrance": 0.8
+    },
+    "easing": {
+      "default": [0.4, 0, 0.2, 1],
+      "decelerate": [0, 0, 0.2, 1],
+      "accelerate": [0.4, 0, 1, 1]
+    },
+    "spring_configs": {
+      "gentle": { "stiffness": 120, "damping": 20 },
+      "bouncy": { "stiffness": 300, "damping": 25 },
+      "snappy": { "stiffness": 400, "damping": 30 }
+    },
+    "variants": {
+      "fadeInUp": {
+        "hidden": { "opacity": 0, "y": 40 },
+        "visible": { "opacity": 1, "y": 0, "transition": { "duration": 0.8, "ease": [0, 0, 0.2, 1] } }
+      },
+      "staggerContainer": {
+        "hidden": {},
+        "visible": { "transition": { "staggerChildren": 0.15, "delayChildren": 0.3 } }
+      },
+      "heroText": {
+        "hidden": { "opacity": 0, "y": 60 },
+        "visible": { "opacity": 1, "y": 0, "transition": { "duration": 0.8, "ease": [0.25, 0.46, 0.45, 0.94] } }
+      },
+      "imageZoom": {
+        "hidden": { "scale": 1.1 },
+        "visible": { "scale": 1, "transition": { "duration": 6, "ease": "linear" } }
+      }
+    },
+    "gsap_configs": {
+      "heroReveal": { "opacity": 0, "y": 60, "duration": 0.8, "stagger": 0.15, "ease": "power3.out" },
+      "headerScroll": { "backgroundColor": "#FFFFFF", "duration": 0.3, "ease": "power2.out" }
+    }
+  }
+}

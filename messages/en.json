@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "projects": "Projects",
+    "blog": "News",
+    "contact": "Contact"
+  },
+  "hero": {
+    "cta": "Learn more"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  }
+}

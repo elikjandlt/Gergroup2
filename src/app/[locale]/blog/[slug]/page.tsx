@@ -1,0 +1,85 @@
+import { notFound } from "next/navigation";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { getServerApolloClient } from "@/lib/apollo/server-client";
+import { CP_POSTS, CP_POST, type CpPostData, type CpPostsData } from "@/graphql/cms/queries/post";
+import { routing } from "@/i18n/routing";
+import PageHeader from "@/components/sections/PageHeader";
+import { FadeIn } from "@/components/motion/FadeIn";
+import type { Metadata } from "next";
+
+function makeStaticClient() {
+  return new ApolloClient({
+    cache: new InMemoryCache(),
+    link: new HttpLink({
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+      headers: { "x-app-token": process.env.NEXT_PUBLIC_ERXES_APP_TOKEN ?? "" },
+    }),
+  });
+}
+
+export async function generateStaticParams() {
+  const results = await Promise.all(
+    routing.locales.map(async (locale) => {
+      const client = makeStaticClient();
+      const { data } = await client.query<CpPostsData>({
+        query: CP_POSTS,
+        variables: { language: locale, status: "published" },
+      });
+      return (data?.cpPosts ?? []).map((post) => ({
+        locale,
+        slug: post.slug,
+      }));
+    })
+  );
+  return results.flat();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const client = await getServerApolloClient();
+  const { data } = await client.query<CpPostData>({
+    query: CP_POST,
+    variables: { slug, language: locale },
+  });
+  const post = data?.cpPost;
+  return {
+    title: post?.title,
+    description: post?.excerpt,
+  };
+}
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const client = await getServerApolloClient();
+  const { data } = await client.query<CpPostData>({
+    query: CP_POST,
+    variables: { slug, language: locale },
+    context: { fetchOptions: { next: { revalidate: 60 } } },
+  });
+  const post = data?.cpPost;
+  if (!post) notFound();
+
+  return (
+    <>
+      <PageHeader title={post.title ?? ""} description={post.excerpt} />
+      <article className="bg-background py-16">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <div
+              className="prose prose-base max-w-none text-muted-foreground"
+              dangerouslySetInnerHTML={{ __html: post.content ?? "" }}
+            />
+          </FadeIn>
+        </div>
+      </article>
+    </>
+  );
+}
