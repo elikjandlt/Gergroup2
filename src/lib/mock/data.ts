@@ -372,7 +372,7 @@ const productImageMap: Record<string, string> = {
   "featured-em86": "/images/products/featured-em86.png",
   "featured-em94": "/images/products/featured-em94.png",
   "featured-el86": "/images/products/featured-el86.png",
-  "featured-el70": "/images/products/featured-el70.png",
+  "featured-el70": "/images/products/featured-el70.jpg",
   "featured-el88": "/images/products/featured-el88.png",
   "featured-el100": "/images/products/featured-el100.png",
   "featured-es153": "/images/products/featured-es153.png",
@@ -394,6 +394,7 @@ const productImageMap: Record<string, string> = {
   "intl-es127": "/images/products/intl-es127.png",
   "intl-es70-external": "/images/products/intl-es70-external.png",
   "intl-el70-bifold": "/images/products/intl-el70-bifold.png",
+  "intl-stacking-doors": "/images/products/intl-el70-bifold.png",
 };
 
 const productCategorySpecs = [

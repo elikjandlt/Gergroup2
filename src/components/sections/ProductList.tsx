@@ -1,16 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import Image from "@/components/common/Image";
 import { FadeIn } from "@/components/motion/FadeIn";
-import {
-  StaggerContainer,
-  StaggerItem,
-} from "@/components/motion/StaggerContainer";
-import { cardHover } from "@/lib/motion";
 import type { ProductCategory, ProductItem } from "@/lib/mock/data";
 
 interface ProductListProps {
@@ -224,49 +218,42 @@ export default function ProductList({
               </div>
             ) : (
               <>
-                <StaggerContainer className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                   {pagedItems.map((item) => (
-                    <StaggerItem key={item._id}>
-                      <motion.div
-                        initial="rest"
-                        whileHover="hover"
-                        animate="rest"
-                        variants={cardHover}
-                        className="group flex flex-col overflow-hidden border border-border bg-background"
-                      >
-                        <div className="relative aspect-[4/3] overflow-hidden bg-[#F5F7FA]">
-                          <Image
-                            src={item.image}
-                            alt={item.title}
-                            fill
-                            sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
+                    <Link
+                      key={item._id}
+                      href={`/products/${item.slug}`}
+                      className="group block overflow-hidden border border-border bg-background transition-shadow duration-300 hover:shadow-md"
+                    >
+                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F5F7FA]">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="flex flex-col p-5">
+                        <h3 className="mb-2 text-lg font-semibold text-foreground">
+                          {item.title}
+                        </h3>
+                        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                          <span className="font-medium text-foreground">
+                            {labels.openingModes}
+                          </span>{" "}
+                          {item.openingModes}
+                        </p>
+                        <div className="mt-auto">
+                          <span className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-dark">
+                            {labels.viewDetails}
+                            <ChevronDown className="ml-1 h-4 w-4 -rotate-90" />
+                          </span>
                         </div>
-                        <div className="flex flex-1 flex-col p-5">
-                          <h3 className="mb-2 text-lg font-semibold text-foreground">
-                            {item.title}
-                          </h3>
-                          <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                            <span className="font-medium text-foreground">
-                              {labels.openingModes}
-                            </span>{" "}
-                            {item.openingModes}
-                          </p>
-                          <div className="mt-auto">
-                            <Link
-                              href={`/products/${item.slug}`}
-                              className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-dark"
-                            >
-                              {labels.viewDetails}
-                              <ChevronDown className="ml-1 h-4 w-4 -rotate-90" />
-                            </Link>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </StaggerItem>
+                      </div>
+                    </Link>
                   ))}
-                </StaggerContainer>
+                </div>
 
                 {totalPages > 1 && (
                   <FadeIn className="mt-12">

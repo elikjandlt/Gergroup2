@@ -30,6 +30,7 @@ export function StaggerContainer({
         },
       }}
       className={cn(className)}
+      style={{ minHeight: 1 }}
     >
       {children}
     </motion.div>
@@ -44,7 +45,11 @@ export function StaggerItem({
   className?: string;
 }) {
   return (
-    <motion.div variants={fadeInUp} className={cn(className)}>
+    <motion.div
+      variants={fadeInUp}
+      initial="visible"
+      className={cn(className)}
+    >
       {children}
     </motion.div>
   );
