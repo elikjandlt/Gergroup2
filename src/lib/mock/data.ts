@@ -355,6 +355,47 @@ const categoryImageMap: Record<string, string> = {
   international: "/images/product-5.png",
 };
 
+const productImageMap: Record<string, string> = {
+  "casement-es65": "/images/products/casement-es65.png",
+  "casement-es70": "/images/products/casement-es70.png",
+  "casement-es76": "/images/products/casement-es76.png",
+  "casement-es81": "/images/products/casement-es81.png",
+  "casement-es91": "/images/products/casement-es91.png",
+  "casement-es100": "/images/products/casement-es100.png",
+  "casement-es101": "/images/products/casement-es101.png",
+  "sliding-es120": "/images/products/sliding-es120.png",
+  "sliding-es152": "/images/products/sliding-es152.png",
+  "sliding-es170": "/images/products/sliding-es170.png",
+  "featured-es70-ventilation": "/images/products/featured-es70-ventilation.png",
+  "featured-ef86w": "/images/products/featured-ef86w.png",
+  "featured-ef106w": "/images/products/featured-ef106w.png",
+  "featured-em86": "/images/products/featured-em86.png",
+  "featured-em94": "/images/products/featured-em94.png",
+  "featured-el86": "/images/products/featured-el86.png",
+  "featured-el70": "/images/products/featured-el70.png",
+  "featured-el88": "/images/products/featured-el88.png",
+  "featured-el100": "/images/products/featured-el100.png",
+  "featured-es153": "/images/products/featured-es153.png",
+  "featured-es68-integrated": "/images/products/featured-es68-integrated.png",
+  "featured-es70-integrated": "/images/products/featured-es70-integrated.png",
+  "featured-es77-integrated": "/images/products/featured-es77-integrated.png",
+  "featured-el110-integrated": "/images/products/featured-el110-integrated.png",
+  "featured-es119-integrated": "/images/products/featured-es119-integrated.png",
+  "featured-external-integrated": "/images/products/featured-external-integrated.jpg",
+  "featured-classical-gauze": "/images/products/featured-classical-gauze.jpg",
+  "featured-fixed-screen": "/images/products/featured-fixed-screen.jpg",
+  "featured-simple-gauze": "/images/products/featured-simple-gauze.jpg",
+  "featured-swinging-screen-door": "/images/products/featured-swinging-screen-door.jpg",
+  "featured-sliding-screen-window": "/images/products/featured-sliding-screen-window.jpg",
+  "featured-sliding-screen-door": "/images/products/featured-sliding-screen-door.jpg",
+  "curtain-ef60hi": "/images/products/curtain-ef60hi.png",
+  "curtain-ef87": "/images/products/curtain-ef87.jpg",
+  "intl-es120-lift": "/images/products/intl-es120-lift.png",
+  "intl-es127": "/images/products/intl-es127.png",
+  "intl-es70-external": "/images/products/intl-es70-external.png",
+  "intl-el70-bifold": "/images/products/intl-el70-bifold.png",
+};
+
 const productCategorySpecs = [
   {
     slug: "casement",
@@ -477,7 +518,7 @@ function buildProductData(locale: string): {
     categorySlug: item.categorySlug,
     subcategorySlug: item.subcategorySlug,
     openingModes: isMn ? item.openingMn : item.openingEn,
-    image: categoryImageMap[item.categorySlug] ?? "/images/product-placeholder.svg",
+    image: productImageMap[item.slug] ?? categoryImageMap[item.categorySlug] ?? "/images/product-placeholder.svg",
   }));
 
   return { categories, items };
