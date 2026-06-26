@@ -35,25 +35,24 @@ export function HeaderShell({
           : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight text-foreground">
-            EOSS Mongolia
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12">
+        <Link href="/" className="flex flex-col leading-none">
+          <span className="text-[22px] font-extrabold tracking-tight text-primary">
+            EOSS
+          </span>
+          <span className="text-[11px] font-semibold tracking-[0.04em] text-foreground">
+            MONGOLIA
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-9 md:flex">
           {items.map((item) => (
             <Link
               key={item._id}
               href={item.url}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary",
-                pathname === item.url
-                  ? "text-primary"
-                  : scrolled
-                  ? "text-foreground"
-                  : "text-foreground"
+                pathname === item.url ? "text-primary" : "text-foreground"
               )}
             >
               {item.label}

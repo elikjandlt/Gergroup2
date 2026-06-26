@@ -13,8 +13,9 @@ export default function ContactForm({ locale }: ContactFormProps) {
   const labels = {
     mn: {
       name: "Нэр",
-      email: "Имэйл",
+      email: "И-мэйл",
       phone: "Утас",
+      company: "Компани",
       message: "Мессеж",
       submit: "Илгээх",
       success: "Баярлалаа! Бид тантай удахгүй холбогдоно.",
@@ -23,6 +24,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
       name: "Name",
       email: "Email",
       phone: "Phone",
+      company: "Company",
       message: "Message",
       submit: "Send",
       success: "Thank you! We will contact you soon.",
@@ -48,7 +50,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
               name="name"
               type="text"
               required
-              className="w-full border border-border bg-input px-4 py-3 text-sm outline-none focus:border-ring"
+              className="w-full border border-border bg-white px-4 py-3 text-sm outline-none focus:border-primary"
             />
           </div>
           <div className="space-y-1">
@@ -58,19 +60,32 @@ export default function ContactForm({ locale }: ContactFormProps) {
               name="email"
               type="email"
               required
-              className="w-full border border-border bg-input px-4 py-3 text-sm outline-none focus:border-ring"
+              className="w-full border border-border bg-white px-4 py-3 text-sm outline-none focus:border-primary"
             />
           </div>
         </div>
-        <div className="space-y-1">
-          <label htmlFor="phone" className="text-sm font-medium">{t.phone}</label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            className="w-full border border-border bg-input px-4 py-3 text-sm outline-none focus:border-ring"
-          />
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-1">
+            <label htmlFor="phone" className="text-sm font-medium">{t.phone}</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              className="w-full border border-border bg-white px-4 py-3 text-sm outline-none focus:border-primary"
+            />
+          </div>
+          <div className="space-y-1">
+            <label htmlFor="company" className="text-sm font-medium">{t.company}</label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              className="w-full border border-border bg-white px-4 py-3 text-sm outline-none focus:border-primary"
+            />
+          </div>
         </div>
+
         <div className="space-y-1">
           <label htmlFor="message" className="text-sm font-medium">{t.message}</label>
           <textarea
@@ -78,16 +93,18 @@ export default function ContactForm({ locale }: ContactFormProps) {
             name="message"
             rows={5}
             required
-            className="w-full border border-border bg-input px-4 py-3 text-sm outline-none focus:border-ring"
+            className="w-full border border-border bg-white px-4 py-3 text-sm outline-none focus:border-primary"
           />
         </div>
+
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-dark disabled:opacity-60"
+          className="inline-flex bg-primary px-10 py-4 text-sm font-bold text-white transition-colors hover:bg-primary-dark disabled:opacity-60"
         >
           {t.submit}
         </button>
+
         {status === "success" && (
           <p className="text-sm text-success">{t.success}</p>
         )}

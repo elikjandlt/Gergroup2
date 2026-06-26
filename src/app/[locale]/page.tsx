@@ -6,7 +6,6 @@ import AboutSection from "@/components/sections/AboutSection";
 import StatsSection from "@/components/sections/StatsSection";
 import ProductGrid from "@/components/sections/ProductGrid";
 import CtaSection from "@/components/sections/CtaSection";
-import type { CmsPage } from "@/types/cms";
 
 export default async function HomePage({
   params,
@@ -21,8 +20,8 @@ export default async function HomePage({
     context: { fetchOptions: { next: { revalidate: 60 } } },
   });
 
-  const pages = (data?.cpPages ?? []) as CmsPage[];
-  const getPage = (slug: string) => pages.find((p) => p.slug === slug);
+  const pages = data?.cpPages ?? [];
+  const aboutPage = pages.find((p) => p.slug === "about");
 
   const slides = getHeroSlides(locale);
   const stats = getStats(locale);
@@ -31,13 +30,13 @@ export default async function HomePage({
   return (
     <>
       <HeroSlider slides={slides} />
-      <AboutSection page={getPage("about")} />
-      <StatsSection stats={stats} />
+      <AboutSection />
       <ProductGrid
-        products={products.slice(0, 4)}
+        products={products}
         title={locale === "mn" ? "Бүтээгдэхүүн" : "Products"}
         viewAllLabel={locale === "mn" ? "Бүгдийг харах" : "View all"}
       />
+      <StatsSection stats={stats} />
       <CtaSection locale={locale} />
     </>
   );

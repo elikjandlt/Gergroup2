@@ -28,75 +28,92 @@ export interface Stat {
   readonly _id: string;
   readonly value: string;
   readonly label: string;
+  readonly icon: string;
 }
 
 const productsByLocale: Record<string, Product[]> = {
   mn: [
     {
       _id: "prod-1",
-      slug: "excavators",
-      title: "Уул уурхайн экскаватор",
+      slug: "shilen-fasad",
+      title: "Шилэн фасад",
       description:
-        "Хүнд нөхцөлд зориулсан, өндөр бүтээмжтэй, бага түлш хэрэглээтэй экскаваторууд.",
-      image: "/images/product-placeholder.svg",
+        "Орчин үеийн барилгын хараа зүйг тодорхойлдог, эрчим хүчний хэмнэлттэй шилэн фасад систем.",
+      image: "/images/product-1.png",
     },
     {
       _id: "prod-2",
-      slug: "dump-trucks",
-      title: "Автосамосвал",
+      slug: "metal-tsonkh",
+      title: "Метал цонх",
       description:
-        "Уул уурхай, карьерийн зориулалттай, өндөр даацын автосамосвалууд.",
-      image: "/images/product-placeholder.svg",
+        "Удаан эдэлгээтэй, дуу чимээ багатай, дулаан тусгаарлалт сайтай металл цонх.",
+      image: "/images/product-2.png",
     },
     {
       _id: "prod-3",
-      slug: "drilling-rigs",
-      title: "Өрөмдлөгийн төхөөрөмж",
+      slug: "slaid-tsonkh",
+      title: "Слайд цонх",
       description:
-        "Нарийн нягтшилтай, аюулгүй өрөмдлөг хийх боломжтой сүүлийн үеийн төхөөрөмж.",
-      image: "/images/product-placeholder.svg",
+        "Зай хэмнэх, практик, орчин үеийн загварын слайд цонхны шийдэл.",
+      image: "/images/product-3.png",
     },
     {
       _id: "prod-4",
-      slug: "crushers",
-      title: "Бутлах тоног төхөөрөмж",
+      slug: "ontsloh-seri",
+      title: "Онцлох сери",
       description:
-        "Чулуулаг, хүдэр бутлахад зориулсан, тогтвортой ажиллагаатай систем.",
-      image: "/images/product-placeholder.svg",
+        "Монголын уур амьсгалд зориулсан онцлох цонх, хаалганы сери.",
+      image: "/images/product-4.png",
+    },
+    {
+      _id: "prod-5",
+      slug: "olon-ulsyn-seri",
+      title: "Олон улсын сери",
+      description:
+        "Дэлхийн стандартад нийцсэн, өндөр чанарын олон улсын бүтээгдэхүүний сери.",
+      image: "/images/product-5.png",
     },
   ],
   en: [
     {
       _id: "prod-1",
-      slug: "excavators",
-      title: "Mining Excavators",
+      slug: "shilen-fasad",
+      title: "Glass Facade",
       description:
-        "High-performance, fuel-efficient excavators built for harsh conditions.",
-      image: "/images/product-placeholder.svg",
+        "Energy-efficient glass facade systems that define the modern look of buildings.",
+      image: "/images/product-1.png",
     },
     {
       _id: "prod-2",
-      slug: "dump-trucks",
-      title: "Dump Trucks",
+      slug: "metal-tsonkh",
+      title: "Metal Windows",
       description:
-        "Heavy-duty dump trucks for mining and quarry applications.",
-      image: "/images/product-placeholder.svg",
+        "Durable, noise-reducing metal windows with excellent thermal insulation.",
+      image: "/images/product-2.png",
     },
     {
       _id: "prod-3",
-      slug: "drilling-rigs",
-      title: "Drilling Rigs",
+      slug: "slaid-tsonkh",
+      title: "Sliding Windows",
       description:
-        "Modern rigs for precise and safe drilling operations.",
-      image: "/images/product-placeholder.svg",
+        "Space-saving, practical, modern-style sliding window solutions.",
+      image: "/images/product-3.png",
     },
     {
       _id: "prod-4",
-      slug: "crushers",
-      title: "Crushing Equipment",
+      slug: "ontsloh-seri",
+      title: "Featured Series",
       description:
-        "Reliable crushing systems for rock and ore processing.",
-      image: "/images/product-placeholder.svg",
+        "Featured window and door series designed for Mongolia's climate.",
+      image: "/images/product-4.png",
+    },
+    {
+      _id: "prod-5",
+      slug: "olon-ulsyn-seri",
+      title: "International Series",
+      description:
+        "High-quality international-standard product series.",
+      image: "/images/product-5.png",
     },
   ],
 };
@@ -105,59 +122,113 @@ const projectsByLocale: Record<string, Project[]> = {
   mn: [
     {
       _id: "proj-1",
-      slug: "oyu-tolgoi",
-      title: "Оюу толгойн өргөтгөл",
-      location: "Өмнөговь аймаг",
+      slug: "business-tower",
+      title: "Бизнес төвийн цамхаг",
+      location: "Улаанбаатар",
       description:
-        "Уул уурхайн тоног төхөөрөмж нийлүүлэх, засвар үйлчилгээ үзүүлэх гэрээ.",
-      image: "/images/project-placeholder.svg",
+        "Олон давхар бизнес төвийн шилэн фасад болон метал цонхны нийлүүлэлт.",
+      image: "/images/product-1.png",
     },
     {
       _id: "proj-2",
-      slug: "road-bridge",
-      title: "Зам гүүрийн төсөл",
-      location: "Төв аймаг",
+      slug: "luxury-hotel",
+      title: "Тансаг зочид буудал",
+      location: "Улаанбаатар",
       description:
-        "Барилгын тоног төхөөрөмж, инженерийн шийдэл нийлүүлсэн.",
-      image: "/images/project-placeholder.svg",
+        "Зочид буудлын фасад, цонх, хаалганы бүрэн шийдэл.",
+      image: "/images/product-2.png",
     },
     {
       _id: "proj-3",
-      slug: "gold-mine",
-      title: "Алтны уурхайн шинэчлэл",
-      location: "Баянхонгор аймаг",
+      slug: "residential-complex",
+      title: "Тэнгэрийн цэцэрлэгт хотхон",
+      location: "Улаанбаатар",
       description:
-        "Бутлах, өрөмдлөгийн төхөөрөмж нийлүүлж, ашиглалтад оруулсан.",
-      image: "/images/project-placeholder.svg",
+        "Орон сууцны хотхоны цонх, хаалга, фасадын систем.",
+      image: "/images/product-3.png",
+    },
+    {
+      _id: "proj-4",
+      slug: "shopping-center",
+      title: "Худалдааны төвийн фасад",
+      location: "Улаанбаатар",
+      description:
+        "Худалдааны төвийн шилэн фасад болон нэвтрэх хэсгийн шийдэл.",
+      image: "/images/product-4.png",
+    },
+    {
+      _id: "proj-5",
+      slug: "industrial-admin",
+      title: "Үйлдвэрийн админ барилга",
+      location: "Улаанбаатар",
+      description:
+        "Үйлдвэрийн барилгын цонх, хаалга, фасадын нийлүүлэлт.",
+      image: "/images/product-5.png",
+    },
+    {
+      _id: "proj-6",
+      slug: "international-project",
+      title: "Олон улсын төсөл",
+      location: "Бээжин",
+      description:
+        "Олон улсын стандартад нийцсэн фасад, цонхны шийдэл.",
+      image: "/images/about-intro.png",
     },
   ],
   en: [
     {
       _id: "proj-1",
-      slug: "oyu-tolgoi",
-      title: "Oyu Tolgoi Expansion",
-      location: "Ömnögovi Province",
+      slug: "business-tower",
+      title: "Business Center Tower",
+      location: "Ulaanbaatar",
       description:
-        "Supply and maintenance contract for mining equipment.",
-      image: "/images/project-placeholder.svg",
+        "Glass facade and metal window supply for a multi-storey business center.",
+      image: "/images/product-1.png",
     },
     {
       _id: "proj-2",
-      slug: "road-bridge",
-      title: "Road and Bridge Project",
-      location: "Töv Province",
+      slug: "luxury-hotel",
+      title: "Luxury Hotel",
+      location: "Ulaanbaatar",
       description:
-        "Supplied construction machinery and engineering solutions.",
-      image: "/images/project-placeholder.svg",
+        "Complete facade, window and door solution for a hotel.",
+      image: "/images/product-2.png",
     },
     {
       _id: "proj-3",
-      slug: "gold-mine",
-      title: "Gold Mine Modernization",
-      location: "Bayankhongor Province",
+      slug: "residential-complex",
+      title: "Sky Garden Residential Complex",
+      location: "Ulaanbaatar",
       description:
-        "Delivered crushing and drilling equipment into operation.",
-      image: "/images/project-placeholder.svg",
+        "Window, door and facade system for a residential complex.",
+      image: "/images/product-3.png",
+    },
+    {
+      _id: "proj-4",
+      slug: "shopping-center",
+      title: "Shopping Center Facade",
+      location: "Ulaanbaatar",
+      description:
+        "Glass facade and entrance solution for a shopping center.",
+      image: "/images/product-4.png",
+    },
+    {
+      _id: "proj-5",
+      slug: "industrial-admin",
+      title: "Industrial Admin Building",
+      location: "Ulaanbaatar",
+      description:
+        "Window, door and facade supply for an industrial building.",
+      image: "/images/product-5.png",
+    },
+    {
+      _id: "proj-6",
+      slug: "international-project",
+      title: "International Project",
+      location: "Beijing",
+      description:
+        "Facade and window solution meeting international standards.",
+      image: "/images/about-intro.png",
     },
   ],
 };
@@ -166,27 +237,28 @@ const heroSlidesByLocale: Record<string, HeroSlide[]> = {
   mn: [
     {
       _id: "hero-1",
-      title: "Итгэл үнэмшилтэй инженерийн шийдэл",
+      title: "Хөнгөн цагаан бүтээгдэхүүний бүрэн шийдэл",
       subtitle:
-        "Европын өндөр чанарын тоног төхөөрөмж, Монголын зах зээлд",
-      image: "/images/hero-1.svg",
+        "Орчин үеийн барилгуудад зориулсан эрчим хүчний хэмнэлттэй цонх, хаалга, шилэн фасад",
+      image: "/images/hero-1.png",
       cta: "Бүтээгдэхүүн харах",
       ctaUrl: "/products",
     },
     {
       _id: "hero-2",
-      title: "Уул уурхай, барилгын түнш тань",
+      title: "Монголын барилгын салбарт итгэл үнэмшилтэй түнш",
       subtitle:
-        "Тоног төхөөрөмж нийлүүлэлт, суурилуулалт, засвар үйлчилгээ",
-      image: "/images/hero-2.svg",
+        "Дизайн зөвлөх үйлчилгээ, систем сонголт, нийлүүлэлт, угсралтын дэмжлэг",
+      image: "/images/hero-2.png",
       cta: "Төслүүд үзэх",
       ctaUrl: "/projects",
     },
     {
       _id: "hero-3",
-      title: "Мэргэжлийн зөвлөгөө, найдвартай дэмжлэг",
-      subtitle: "Бид таны бизнесийн өсөлтийн хамтрагч",
-      image: "/images/hero-3.svg",
+      title: "Олон улсын стандарт, Монголын нөхцөлд",
+      subtitle:
+        "Хөнгөн цагаан системийн технологийг Монголын уур амьсгалд зориулан нэвтрүүлж байна",
+      image: "/images/hero-3.png",
       cta: "Холбоо барих",
       ctaUrl: "/contact",
     },
@@ -194,25 +266,28 @@ const heroSlidesByLocale: Record<string, HeroSlide[]> = {
   en: [
     {
       _id: "hero-1",
-      title: "Trusted Engineering Solutions",
-      subtitle: "European-grade equipment for the Mongolian market",
-      image: "/images/hero-1.svg",
+      title: "Complete Aluminum Solutions",
+      subtitle:
+        "Energy-efficient windows, doors and glass facades for modern buildings",
+      image: "/images/hero-1.png",
       cta: "View Products",
       ctaUrl: "/products",
     },
     {
       _id: "hero-2",
-      title: "Your Mining & Construction Partner",
-      subtitle: "Equipment supply, installation and after-sales service",
-      image: "/images/hero-2.svg",
+      title: "A Trusted Partner in Mongolia's Construction Sector",
+      subtitle:
+        "Design consulting, system selection, supply and installation support",
+      image: "/images/hero-2.png",
       cta: "View Projects",
       ctaUrl: "/projects",
     },
     {
       _id: "hero-3",
-      title: "Professional Advice, Reliable Support",
-      subtitle: "We are a partner in your business growth",
-      image: "/images/hero-3.svg",
+      title: "International Standards for Mongolian Conditions",
+      subtitle:
+        "Adapting aluminum system technology for Mongolia's climate",
+      image: "/images/hero-3.png",
       cta: "Contact Us",
       ctaUrl: "/contact",
     },
@@ -221,16 +296,16 @@ const heroSlidesByLocale: Record<string, HeroSlide[]> = {
 
 const statsByLocale: Record<string, Stat[]> = {
   mn: [
-    { _id: "stat-1", value: "15+", label: "Жилийн туршлага" },
-    { _id: "stat-2", value: "200+", label: "Нийлүүлсэн төхөөрөмж" },
-    { _id: "stat-3", value: "50+", label: "Төслийн түнш" },
-    { _id: "stat-4", value: "24/7", label: "Дэмжлэг" },
+    { _id: "stat-1", value: "15+", label: "Жилийн туршлага", icon: "award" },
+    { _id: "stat-2", value: "200+", label: "Гүйцэтгэсэн төсөл", icon: "building" },
+    { _id: "stat-3", value: "50+", label: "Бүтээгдэхүүний сери", icon: "layers" },
+    { _id: "stat-4", value: "2", label: "Улс орон", icon: "globe" },
   ],
   en: [
-    { _id: "stat-1", value: "15+", label: "Years of experience" },
-    { _id: "stat-2", value: "200+", label: "Equipment delivered" },
-    { _id: "stat-3", value: "50+", label: "Project partners" },
-    { _id: "stat-4", value: "24/7", label: "Support" },
+    { _id: "stat-1", value: "15+", label: "Years of experience", icon: "award" },
+    { _id: "stat-2", value: "200+", label: "Projects completed", icon: "building" },
+    { _id: "stat-3", value: "50+", label: "Product series", icon: "layers" },
+    { _id: "stat-4", value: "2", label: "Countries", icon: "globe" },
   ],
 };
 

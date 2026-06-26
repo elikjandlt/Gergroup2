@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Бүтээгдэхүүн",
   description:
-    "Уул уурхай, барилгын зориулалттай Европын өндөр чанарын тоног төхөөрөмж",
+    "Хөнгөн цагаан цонх, хаалга, шилэн фасад системийн шийдэл",
 };
 
 export default async function ProductsPage({
@@ -20,32 +20,41 @@ export default async function ProductsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const isMn = locale === "mn";
   const client = await getServerApolloClient();
   const { data } = await client.query<CpPagesData>({
     query: CP_PAGES,
     variables: { language: locale },
     context: { fetchOptions: { next: { revalidate: 60 } } },
   });
-  const page = data?.cpPages?.find(
-    (p: { slug?: string }) => p.slug === "products"
-  );
+  const page = data?.cpPages?.find((p) => p.slug === "products");
   if (!page) notFound();
 
   const products = getProducts(locale);
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description={page.description} />
-      <section className="bg-muted py-12">
+      <PageHeader title={page.name ?? ""} description="Нүүр / Бүтээгдэхүүн" />
+
+      <section className="bg-background py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <FadeIn>
-            <div
-              className="prose prose-base max-w-none text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: page.content ?? "" }}
-            />
+            <h2 className="mb-4 text-2xl font-bold text-foreground lg:text-3xl">
+              {isMn
+                ? "Барилгын бүрэн хийцийн шийдэл"
+                : "Complete Building Envelope Solutions"}
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-muted-foreground">
+              {isMn
+                ? "Бид фасадаас эхлээд цонх, хаалга хүртэлх олон төрлийн бүтээгдэхүүнийг санал болгодог."
+                : "We offer a wide range of products from facades to windows and doors."}
+            </p>
           </FadeIn>
         </div>
       </section>
+
       <ProductList products={products} />
       <CtaSection locale={locale} />
     </>

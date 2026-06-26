@@ -18,7 +18,6 @@ export default async function BlogPage({
 }) {
   const { locale } = await params;
   const client = await getServerApolloClient();
-
   const [pagesRes, postsRes] = await Promise.all([
     client.query<CpPagesData>({
       query: CP_PAGES,
@@ -32,16 +31,14 @@ export default async function BlogPage({
     }),
   ]);
 
-  const page = pagesRes.data?.cpPages?.find(
-    (p) => p.slug === "blog"
-  );
+  const page = pagesRes.data?.cpPages?.find((p) => p.slug === "blog");
   if (!page) notFound();
 
   const posts = postsRes.data?.cpPosts ?? [];
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description={page.description} />
+      <PageHeader title={page.name ?? ""} description="Нүүр / Мэдээлэл" />
       <BlogGrid posts={posts} />
     </>
   );

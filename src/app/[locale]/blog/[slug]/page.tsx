@@ -72,8 +72,8 @@ export default async function PostPage({
 
   return (
     <>
-      <PageHeader title={post.title ?? ""} description={post.excerpt} />
-      <article className="bg-background py-16">
+      <PageHeader title={post.title ?? ""} description="Нүүр / Мэдээлэл" />
+      <article className="bg-background py-16 pb-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div

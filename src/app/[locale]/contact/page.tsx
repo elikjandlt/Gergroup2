@@ -23,56 +23,68 @@ export default async function ContactPage({
     variables: { language: locale },
     context: { fetchOptions: { next: { revalidate: 60 } } },
   });
-  const page = data?.cpPages?.find(
-    (p: { slug?: string }) => p.slug === "contact"
-  );
+  const page = data?.cpPages?.find((p) => p.slug === "contact");
   if (!page) notFound();
 
   const isMn = locale === "mn";
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description={page.description} />
-      <section className="bg-background py-16">
+      <PageHeader title={page.name ?? ""} description="Нүүр / Холбоо барих" />
+
+      <section className="bg-background py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-3">
-            <div className="lg:col-span-1 space-y-6">
-              <div className="flex items-start gap-4">
-                <Phone className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <p className="font-medium">{isMn ? "Утас" : "Phone"}</p>
-                  <p className="text-muted-foreground">+976 7711 2233</p>
+          <div className="grid gap-16 lg:grid-cols-2">
+            <div className="space-y-10">
+              <h2 className="text-3xl font-bold text-foreground">
+                {isMn ? "Холбоо барих мэдээлэл" : "Contact Information"}
+              </h2>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <MapPin className="h-5 w-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-medium">{isMn ? "Хаяг" : "Address"}</p>
+                    <p className="text-muted-foreground">
+                      {isMn
+                        ? "Улаанбаатар, Сүхбаатар, Энхтайвны өргөн чөлөө 18"
+                        : "18 Enkhtaivny Avenue, Sukhbaatar, Ulaanbaatar"}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Mail className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <p className="font-medium">{isMn ? "Имэйл" : "Email"}</p>
-                  <p className="text-muted-foreground">info@eoss.mn</p>
+
+                <div className="flex items-start gap-4">
+                  <Phone className="h-5 w-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-medium">{isMn ? "Утас" : "Phone"}</p>
+                    <p className="text-muted-foreground">+976 7711 2233</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <MapPin className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <p className="font-medium">{isMn ? "Хаяг" : "Address"}</p>
-                  <p className="text-muted-foreground">
-                    {isMn
-                      ? "Улаанбаатар, Сүхбаатар, Энхтайвны өргөн чөлөө 18"
-                      : "18 Enkhtaivny Avenue, Sukhbaatar, Ulaanbaatar"}
-                  </p>
+
+                <div className="flex items-start gap-4">
+                  <Mail className="h-5 w-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-medium">{isMn ? "И-мэйл" : "Email"}</p>
+                    <p className="text-muted-foreground">info@eoss.mn</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Clock className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <p className="font-medium">{isMn ? "Ажлын цаг" : "Working hours"}</p>
-                  <p className="text-muted-foreground">
-                    {isMn ? "Да-Ба 09:00 - 18:00" : "Mon-Fri 09:00 - 18:00"}
-                  </p>
+
+                <div className="flex items-start gap-4">
+                  <Clock className="h-5 w-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-medium">{isMn ? "Ажлын цаг" : "Working hours"}</p>
+                    <p className="text-muted-foreground">
+                      {isMn ? "Да-Ба 09:00 - 18:00" : "Mon-Fri 09:00 - 18:00"}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-2 bg-muted p-6 sm:p-8">
+
+            <div className="bg-[#F5F7FA] p-8 lg:p-12">
+              <h2 className="mb-8 text-2xl font-bold text-foreground">
+                {isMn ? "Үнийн санал авах" : "Request a Quote"}
+              </h2>
               <ContactForm locale={locale} />
             </div>
           </div>

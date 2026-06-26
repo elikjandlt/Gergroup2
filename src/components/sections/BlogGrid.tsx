@@ -20,9 +20,9 @@ interface BlogGridProps {
 
 export default function BlogGrid({ posts }: BlogGridProps) {
   return (
-    <section className="bg-background py-16">
+    <section className="bg-background py-16 pb-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <StaggerContainer className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => {
             const category =
               post.category?.name ?? post.categories?.[0]?.name ?? "";
@@ -32,7 +32,7 @@ export default function BlogGrid({ posts }: BlogGridProps) {
               <StaggerItem key={post._id}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group block overflow-hidden border border-border bg-card"
+                  className="group flex flex-col overflow-hidden border border-border bg-background"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
@@ -43,14 +43,14 @@ export default function BlogGrid({ posts }: BlogGridProps) {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-5">
+                  <div className="flex flex-1 flex-col p-6">
                     <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
                       {category}
                     </p>
-                    <h3 className="mb-3 text-lg font-semibold text-card-foreground line-clamp-2">
+                    <h3 className="mb-3 text-lg font-bold text-foreground line-clamp-2">
                       {post.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-3">
+                    <p className="flex-1 text-sm text-muted-foreground line-clamp-3">
                       {post.excerpt}
                     </p>
                   </div>

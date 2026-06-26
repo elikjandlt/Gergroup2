@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing";
-import { Phone, Mail } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { FadeIn } from "@/components/motion/FadeIn";
 
 interface CtaSectionProps {
@@ -7,26 +7,27 @@ interface CtaSectionProps {
 }
 
 export default function CtaSection({ locale }: CtaSectionProps) {
-  const title =
-    locale === "mn" ? "Үнийн санал авахыг хүсэж байна уу?" : "Request a Quote";
-  const subtitle =
-    locale === "mn"
-      ? "Бид танд тохирох бүтээгдэхүүн, шийдлийн талаар зөвлөгөө өгөхөд бэлэн."
-      : "We are ready to advise you on the right products and solutions.";
-  const cta = locale === "mn" ? "Холбоо барих" : "Contact Us";
+  const isMn = locale === "mn";
+  const title = isMn
+    ? "Төслөө эхлүүлэхэд бэлэн үү?"
+    : "Ready to start your project?";
+  const subtitle = isMn
+    ? "Манай багтай холбогдож, дэлгэрэнгүй үнийн санал аваарай."
+    : "Get in touch with our team for a detailed quotation.";
+  const cta = isMn ? "Холбоо барих" : "Contact Us";
 
   return (
-    <section className="bg-primary py-20">
+    <section className="bg-primary py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="grid items-center gap-16 lg:grid-cols-2">
           <FadeIn>
-            <div className="text-primary-foreground">
-              <h2 className="mb-4 text-3xl font-bold lg:text-4xl">{title}</h2>
-              <p className="text-lg opacity-90">{subtitle}</p>
+            <div className="text-white">
+              <h2 className="mb-5 text-3xl font-extrabold leading-tight lg:text-5xl">{title}</h2>
+              <p className="text-lg text-white/90">{subtitle}</p>
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-white px-8 py-3.5 text-sm font-semibold text-primary transition-colors hover:bg-white/90"
+                  className="inline-flex items-center bg-secondary px-10 py-4 text-sm font-bold text-white transition-colors hover:bg-secondary/90"
                 >
                   {cta}
                 </Link>
@@ -35,14 +36,31 @@ export default function CtaSection({ locale }: CtaSectionProps) {
           </FadeIn>
 
           <FadeIn direction="right" delay={0.15}>
-            <div className="space-y-5 border-l-2 border-white/20 pl-8 text-primary-foreground">
-              <div className="flex items-center gap-4">
-                <Phone className="h-5 w-5" />
-                <span className="font-medium">+976 7711 2233</span>
+            <div className="space-y-6 text-white">
+              <div className="flex items-start gap-4">
+                <Mail className="h-5 w-5 shrink-0 mt-1" />
+                <div>
+                  <p className="text-sm text-white/70">{isMn ? "И-мэйл" : "Email"}</p>
+                  <p className="font-medium">info@eoss.mn</p>
+                </div>
               </div>
-              <div className="flex items-center gap-4">
-                <Mail className="h-5 w-5" />
-                <span className="font-medium">info@eoss.mn</span>
+              <div className="flex items-start gap-4">
+                <Phone className="h-5 w-5 shrink-0 mt-1" />
+                <div>
+                  <p className="text-sm text-white/70">{isMn ? "Утас" : "Phone"}</p>
+                  <p className="font-medium">+976 7711 2233</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <MapPin className="h-5 w-5 shrink-0 mt-1" />
+                <div>
+                  <p className="text-sm text-white/70">{isMn ? "Хаяг" : "Address"}</p>
+                  <p className="font-medium">
+                    {isMn
+                      ? "Улаанбаатар, Сүхбаатар, Энхтайвны өргөн чөлөө 18"
+                      : "18 Enkhtaivny Avenue, Sukhbaatar, Ulaanbaatar"}
+                  </p>
+                </div>
               </div>
             </div>
           </FadeIn>

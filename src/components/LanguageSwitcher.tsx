@@ -4,33 +4,26 @@ import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
-const LABELS: Record<string, string> = {
-  mn: "МН",
-  en: "EN",
-};
-
 export function LanguageSwitcher({ locales }: { locales: readonly string[] }) {
   const locale = useLocale();
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center gap-1 text-sm font-medium">
+    <div className="flex items-center gap-1 text-sm font-medium text-foreground">
       {locales.map((l, index) => (
-        <span key={l} className="flex items-center gap-1">
+        <span key={l} className="flex items-center">
           <Link
             href={pathname}
             locale={l}
             className={cn(
-              "px-1.5 py-0.5 transition-colors hover:text-primary",
-              l === locale
-                ? "text-primary font-bold"
-                : "text-foreground/60"
+              "px-1 transition-colors hover:text-primary",
+              l === locale ? "text-primary font-semibold" : "text-foreground/70"
             )}
           >
-            {LABELS[l] ?? l.toUpperCase()}
+            {l.toUpperCase()}
           </Link>
           {index < locales.length - 1 && (
-            <span className="text-border">|</span>
+            <span className="text-foreground/40">/</span>
           )}
         </span>
       ))}

@@ -9,12 +9,12 @@ interface ProjectGridProps {
 
 export default function ProjectGrid({ projects }: ProjectGridProps) {
   return (
-    <section className="bg-background py-16">
+    <section className="bg-background pb-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <StaggerContainer className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <StaggerItem key={project._id}>
-              <article className="overflow-hidden border border-border bg-card">
+              <article className="overflow-hidden bg-background border border-border">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={project.image}
@@ -24,11 +24,11 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                     className="object-cover"
                   />
                 </div>
-                <div className="p-5">
-                  <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-primary">
+                <div className="p-6">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
                     {project.location}
                   </p>
-                  <h3 className="mb-3 text-lg font-semibold text-card-foreground">
+                  <h3 className="mb-3 text-lg font-bold text-foreground">
                     {project.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">
