@@ -324,3 +324,177 @@ export function getHeroSlides(locale: string): HeroSlide[] {
 export function getStats(locale: string): Stat[] {
   return statsByLocale[locale] ?? statsByLocale.mn;
 }
+
+export interface ProductSubcategory {
+  readonly slug: string;
+  readonly title: string;
+}
+
+export interface ProductCategory {
+  readonly _id: string;
+  readonly slug: string;
+  readonly title: string;
+  readonly subcategories?: ProductSubcategory[];
+}
+
+export interface ProductItem {
+  readonly _id: string;
+  readonly slug: string;
+  readonly title: string;
+  readonly categorySlug: string;
+  readonly subcategorySlug?: string;
+  readonly openingModes: string;
+  readonly image: string;
+}
+
+const categoryImageMap: Record<string, string> = {
+  casement: "/images/product-1.png",
+  sliding: "/images/product-2.png",
+  featured: "/images/product-3.png",
+  "curtain-wall": "/images/product-4.png",
+  international: "/images/product-5.png",
+};
+
+const productCategorySpecs = [
+  {
+    slug: "casement",
+    titleMn: "Хөдөлгөөнт цонхны сери",
+    titleEn: "Casement Series",
+  },
+  {
+    slug: "sliding",
+    titleMn: "Хөдөлгөөнт хаалганы сери",
+    titleEn: "Sliding Series",
+  },
+  {
+    slug: "featured",
+    titleMn: "Онцлох сери",
+    titleEn: "Featured Series",
+    subcategories: [
+      { slug: "ventilation", titleMn: "Агааржуулалтын цонх", titleEn: "Ventilation Window" },
+      { slug: "parallel-outward", titleMn: "Хөндлөн гадна нээлттэй цонх", titleEn: "Parallel Outward Opening Window" },
+      { slug: "tilt-slide", titleMn: "Хазайлгаан хаалгатай цонх", titleEn: "Tilt-and-Slide Window" },
+      { slug: "concealed-sash", titleMn: "Далд жигнүүртэй цонх", titleEn: "Concealed Sash Window" },
+      { slug: "bifold-door", titleMn: "Хуулдаг хаалга", titleEn: "Bifold Door" },
+      { slug: "parallel-retraction", titleMn: "Хөндлөн шахагдах хаалга", titleEn: "Parallel Retraction Sliding Door" },
+      { slug: "integrated-flyscreen", titleMn: "Савхат хаалттай цонх", titleEn: "Integrated Flyscreen Window" },
+      { slug: "matching-flyscreen", titleMn: "Савхат хаалт", titleEn: "Matching Flyscreen" },
+    ],
+  },
+  {
+    slug: "curtain-wall",
+    titleMn: "Шилэн фасад сери",
+    titleEn: "Curtain Wall Series",
+  },
+  {
+    slug: "international",
+    titleMn: "Олон улсын сери",
+    titleEn: "International Series",
+    subcategories: [
+      { slug: "sliding-stacking-doors", titleMn: "Слайд / хураах хаалга", titleEn: "Sliding/Stacking Doors" },
+      { slug: "swing-door", titleMn: "Энгийн нээлттэй хаалга", titleEn: "Swing door" },
+      { slug: "awning-window", titleMn: "Дээшээ нээлттэй цонх", titleEn: "Awning Window" },
+      { slug: "bifold-door-intl", titleMn: "Хуулдаг хаалга", titleEn: "Bifold door" },
+      { slug: "sliding", titleMn: "Слайд", titleEn: "Sliding" },
+    ],
+  },
+];
+
+const productItemSpecs = [
+  // Casement
+  { slug: "casement-es65", title: "ES65", categorySlug: "casement", openingMn: "Дотоод болон гадна хөдөлгөөнт цонх", openingEn: "Interior casement window, exterior casement window" },
+  { slug: "casement-es70", title: "ES70", categorySlug: "casement", openingMn: "Дотоод болон гадна хөдөлгөөнт цонх", openingEn: "Interior casement window, exterior casement window" },
+  { slug: "casement-es76", title: "ES76", categorySlug: "casement", openingMn: "Дотоод болон гадна хөдөлгөөнт цонх", openingEn: "Interior casement window, exterior casement window" },
+  { slug: "casement-es81", title: "ES81", categorySlug: "casement", openingMn: "Дотоод болон гадна хөдөлгөөнт цонх", openingEn: "Interior casement window, exterior casement window" },
+  { slug: "casement-es91", title: "ES91", categorySlug: "casement", openingMn: "Дотоод болон гадна хөдөлгөөнт цонх", openingEn: "Interior casement window, exterior casement window" },
+  { slug: "casement-es100", title: "ES100", categorySlug: "casement", openingMn: "Дотоод болон гадна хөдөлгөөнт цонх", openingEn: "Interior casement window, exterior casement window" },
+  { slug: "casement-es101", title: "ES101", categorySlug: "casement", openingMn: "Дотоод болон гадна хөдөлгөөнт цонх", openingEn: "Interior casement window, exterior casement window" },
+  // Sliding
+  { slug: "sliding-es120", title: "ES120", categorySlug: "sliding", openingMn: "Хөдөлгөөнт цонх", openingEn: "Sliding window" },
+  { slug: "sliding-es152", title: "ES152", categorySlug: "sliding", openingMn: "Хөдөлгөөнт цонх", openingEn: "Sliding window" },
+  { slug: "sliding-es170", title: "ES170", categorySlug: "sliding", openingMn: "Хөдөлгөөнт цонх", openingEn: "Sliding window" },
+  // Featured - ventilation
+  { slug: "featured-es70-ventilation", title: "ES70 Ventilation Window", categorySlug: "featured", subcategorySlug: "ventilation", openingMn: "Агааржуулалтын цонх", openingEn: "Ventilation window" },
+  // Featured - parallel outward
+  { slug: "featured-ef86w", title: "EF86W (ER86) Sliding window", categorySlug: "featured", subcategorySlug: "parallel-outward", openingMn: "Хөндлөн гадна нээлттэй цонх", openingEn: "Parallel outward opening window" },
+  { slug: "featured-ef106w", title: "EF106W (ER106) Sliding window", categorySlug: "featured", subcategorySlug: "parallel-outward", openingMn: "Хөндлөн гадна нээлттэй цонх", openingEn: "Parallel outward opening window" },
+  // Featured - tilt-slide
+  { slug: "featured-em86", title: "EM86 drift window", categorySlug: "featured", subcategorySlug: "tilt-slide", openingMn: "Хазайлгаан хаалгатай цонх", openingEn: "Tilt-and-slide window" },
+  { slug: "featured-em94", title: "EM94 drift window", categorySlug: "featured", subcategorySlug: "tilt-slide", openingMn: "Хазайлгаан хаалгатай цонх", openingEn: "Tilt-and-slide window" },
+  // Featured - concealed sash
+  { slug: "featured-el86", title: "EL86 Hidden Fan", categorySlug: "featured", subcategorySlug: "concealed-sash", openingMn: "Далд жигнүүртэй цонх", openingEn: "Concealed sash window" },
+  // Featured - bifold door
+  { slug: "featured-el70", title: "EL70 folding door", categorySlug: "featured", subcategorySlug: "bifold-door", openingMn: "Хуулдаг хаалга", openingEn: "Bifold door" },
+  { slug: "featured-el88", title: "EL88 folding door", categorySlug: "featured", subcategorySlug: "bifold-door", openingMn: "Хуулдаг хаалга", openingEn: "Bifold door" },
+  { slug: "featured-el100", title: "EL100 folding door", categorySlug: "featured", subcategorySlug: "bifold-door", openingMn: "Хуулдаг хаалга", openingEn: "Bifold door" },
+  // Featured - parallel retraction
+  { slug: "featured-es153", title: "ES153 side pressure door", categorySlug: "featured", subcategorySlug: "parallel-retraction", openingMn: "Хөндлөн шахагдах хаалга", openingEn: "Parallel retraction sliding door" },
+  // Featured - integrated flyscreen
+  { slug: "featured-es68-integrated", title: "ES68 window screen integrated", categorySlug: "featured", subcategorySlug: "integrated-flyscreen", openingMn: "Савхат хаалттай цонх", openingEn: "Integrated flyscreen window" },
+  { slug: "featured-es70-integrated", title: "ES70 integrated window screen", categorySlug: "featured", subcategorySlug: "integrated-flyscreen", openingMn: "Савхат хаалттай цонх", openingEn: "Integrated flyscreen window" },
+  { slug: "featured-es77-integrated", title: "ES77 integrated window screen", categorySlug: "featured", subcategorySlug: "integrated-flyscreen", openingMn: "Савхат хаалттай цонх", openingEn: "Integrated flyscreen window" },
+  { slug: "featured-el110-integrated", title: "EL110 integrated window screen", categorySlug: "featured", subcategorySlug: "integrated-flyscreen", openingMn: "Савхат хаалттай цонх", openingEn: "Integrated flyscreen window" },
+  { slug: "featured-es119-integrated", title: "ES119 integrated window screen", categorySlug: "featured", subcategorySlug: "integrated-flyscreen", openingMn: "Савхат хаалттай цонх", openingEn: "Integrated flyscreen window" },
+  { slug: "featured-external-integrated", title: "Integrated external window screen", categorySlug: "featured", subcategorySlug: "integrated-flyscreen", openingMn: "Савхат хаалттай цонх", openingEn: "Integrated flyscreen window" },
+  // Featured - matching flyscreen
+  { slug: "featured-classical-gauze", title: "Classical gauze window", categorySlug: "featured", subcategorySlug: "matching-flyscreen", openingMn: "Савхат хаалт", openingEn: "Matching flyscreen" },
+  { slug: "featured-fixed-screen", title: "Fixed window screen", categorySlug: "featured", subcategorySlug: "matching-flyscreen", openingMn: "Савхат хаалт", openingEn: "Matching flyscreen" },
+  { slug: "featured-simple-gauze", title: "Simple gauze window", categorySlug: "featured", subcategorySlug: "matching-flyscreen", openingMn: "Савхат хаалт", openingEn: "Matching flyscreen" },
+  { slug: "featured-swinging-screen-door", title: "Swinging screen door", categorySlug: "featured", subcategorySlug: "matching-flyscreen", openingMn: "Савхат хаалт", openingEn: "Matching flyscreen" },
+  { slug: "featured-sliding-screen-window", title: "Sliding screen window", categorySlug: "featured", subcategorySlug: "matching-flyscreen", openingMn: "Савхат хаалт", openingEn: "Matching flyscreen" },
+  { slug: "featured-sliding-screen-door", title: "Sliding screen door", categorySlug: "featured", subcategorySlug: "matching-flyscreen", openingMn: "Савхат хаалт", openingEn: "Matching flyscreen" },
+  // Curtain wall
+  { slug: "curtain-ef60hi", title: "EF60HI curtain wall", categorySlug: "curtain-wall", openingMn: "Шилэн фасад", openingEn: "Curtain wall" },
+  { slug: "curtain-ef87", title: "EF87 Unitized curtain wall", categorySlug: "curtain-wall", openingMn: "Шилэн фасад", openingEn: "Curtain wall" },
+  // International
+  { slug: "intl-es120-lift", title: "ES120 Lift & Slide Door", categorySlug: "international", subcategorySlug: "sliding-stacking-doors", openingMn: "Слайд / хураах хаалга", openingEn: "Sliding/Stacking door" },
+  { slug: "intl-es127", title: "ES127 Sliding/Stacking Door", categorySlug: "international", subcategorySlug: "sliding-stacking-doors", openingMn: "Слайд / хураах хаалга", openingEn: "Sliding/Stacking door" },
+  { slug: "intl-es70-external", title: "ES70 External Opening Door", categorySlug: "international", subcategorySlug: "swing-door", openingMn: "Энгийн нээлттэй хаалга", openingEn: "Swing door" },
+  { slug: "intl-es70-awning", title: "ES70 Awning Window", categorySlug: "international", subcategorySlug: "awning-window", openingMn: "Дээшээ нээлттэй цонх", openingEn: "Awning window" },
+  { slug: "intl-el70-bifold", title: "EL70 Bifold door", categorySlug: "international", subcategorySlug: "bifold-door-intl", openingMn: "Хуулдаг хаалга", openingEn: "Bifold door" },
+  { slug: "intl-stacking-doors", title: "Stacking Doors", categorySlug: "international", subcategorySlug: "sliding", openingMn: "Слайд хаалга", openingEn: "Sliding door" },
+];
+
+function buildProductData(locale: string): {
+  categories: ProductCategory[];
+  items: ProductItem[];
+} {
+  const isMn = locale === "mn";
+  const categories: ProductCategory[] = productCategorySpecs.map((cat, index) => ({
+    _id: `prod-cat-${index}`,
+    slug: cat.slug,
+    title: isMn ? cat.titleMn : cat.titleEn,
+    subcategories: cat.subcategories?.map((sub) => ({
+      slug: sub.slug,
+      title: isMn ? sub.titleMn : sub.titleEn,
+    })),
+  }));
+
+  const items: ProductItem[] = productItemSpecs.map((item, index) => ({
+    _id: `prod-item-${index}`,
+    slug: item.slug,
+    title: item.title,
+    categorySlug: item.categorySlug,
+    subcategorySlug: item.subcategorySlug,
+    openingModes: isMn ? item.openingMn : item.openingEn,
+    image: categoryImageMap[item.categorySlug] ?? "/images/product-placeholder.svg",
+  }));
+
+  return { categories, items };
+}
+
+export function getProductCategories(locale: string): ProductCategory[] {
+  return buildProductData(locale).categories;
+}
+
+export function getProductItems(locale: string): ProductItem[] {
+  return buildProductData(locale).items;
+}
+
+export function getProductItemBySlug(
+  locale: string,
+  slug: string
+): ProductItem | undefined {
+  return getProductItems(locale).find((item) => item.slug === slug);
+}
+

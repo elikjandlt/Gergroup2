@@ -6,10 +6,16 @@ export {
   getProjects,
   getHeroSlides,
   getStats,
+  getProductCategories,
+  getProductItems,
+  getProductItemBySlug,
 } from "./data";
 export type {
   Product,
   Project,
   HeroSlide,
   Stat,
+  ProductCategory,
+  ProductSubcategory,
+  ProductItem,
 } from "./data";
