@@ -11,13 +11,15 @@ export default async function Header({ locale }: { locale: string }) {
     context: { fetchOptions: { next: { revalidate: 60 } } },
   });
 
-  const items = (data?.cpMenus ?? []).map((item) => ({
-    _id: item._id,
-    label: item.label ?? "",
-    url: item.url ?? "",
-    order: item.order ?? 0,
-    target: item.target,
-  }));
+  const items = (data?.cpMenus ?? [])
+    .map((item) => ({
+      _id: item._id,
+      label: item.label ?? "",
+      url: item.url ?? "",
+      order: item.order ?? 0,
+      target: item.target,
+    }))
+    .sort((a, b) => a.order - b.order);
 
   return <HeaderShell items={items} locale={locale} locales={routing.locales} />;
 }
