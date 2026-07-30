@@ -30,7 +30,11 @@ export default async function ContactPage({
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description="Нүүр / Холбоо барих" />
+      <PageHeader
+        title={page.name ?? ""}
+        description={isMn ? "Нүүр / Холбоо барих" : "Home / Contact"}
+        image="/images/hero-1.png"
+      />
 
       <section className="bg-background py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

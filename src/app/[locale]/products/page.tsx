@@ -19,6 +19,7 @@ export default async function ProductsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const isMn = locale === "mn";
   const client = await getServerApolloClient();
   const { data } = await client.query<CpPagesData>({
     query: CP_PAGES,
@@ -33,7 +34,11 @@ export default async function ProductsPage({
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description="Нүүр / Бүтээгдэхүүн" />
+      <PageHeader
+        title={page.name ?? ""}
+        description={isMn ? "Нүүр / Бүтээгдэхүүн" : "Home / Products"}
+        image="/images/product-3.png"
+      />
       <ProductList categories={categories} items={items} locale={locale} />
       <CtaSection locale={locale} />
     </>

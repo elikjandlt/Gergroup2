@@ -33,7 +33,11 @@ export default async function ProjectsPage({
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description="Нүүр / Төслүүд" />
+      <PageHeader
+        title={page.name ?? ""}
+        description={isMn ? "Нүүр / Төслүүд" : "Home / Projects"}
+        image="/images/hero-2.png"
+      />
 
       <section className="bg-background py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">

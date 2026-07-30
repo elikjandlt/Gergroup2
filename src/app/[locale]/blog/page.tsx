@@ -17,6 +17,7 @@ export default async function BlogPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const isMn = locale === "mn";
   const client = await getServerApolloClient();
   const [pagesRes, postsRes] = await Promise.all([
     client.query<CpPagesData>({
@@ -38,7 +39,11 @@ export default async function BlogPage({
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description="Нүүр / Мэдээлэл" />
+      <PageHeader
+        title={page.name ?? ""}
+        description={isMn ? "Нүүр / Мэдээлэл" : "Home / News"}
+        image="/images/hero-3.png"
+      />
       <BlogGrid posts={posts} />
     </>
   );
