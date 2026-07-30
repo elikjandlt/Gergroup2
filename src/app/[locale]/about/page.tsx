@@ -63,7 +63,11 @@ export default async function AboutPage({
 
   return (
     <>
-      <PageHeader title={page.name ?? ""} description="Нүүр / Бидний тухай" />
+      <PageHeader
+        title={page.name ?? ""}
+        description={isMn ? "Нүүр / Бидний тухай" : "Home / About"}
+        image="/images/about-intro.png"
+      />
 
       <section className="bg-background py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
