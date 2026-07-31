@@ -29,7 +29,14 @@ export default async function HomePage({
 
   return (
     <>
-      <HeroSlider slides={slides} />
+      <HeroSlider
+        slides={slides}
+        keywords={
+          locale === "mn"
+            ? ["Чанар", "Инновац", "Дэмжлэг"]
+            : ["Quality", "Innovation", "Support"]
+        }
+      />
       <AboutSection />
       <ProductGrid
         products={products}

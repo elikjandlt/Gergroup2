@@ -32,10 +32,10 @@ export function HeaderShell({
         "fixed top-0 left-0 right-0 z-30 transition-colors duration-300",
         scrolled
           ? "bg-background/95 backdrop-blur shadow-sm border-b border-border"
-          : "bg-transparent"
+          : "bg-background/95 backdrop-blur border-b border-border"
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12">
         <Link href="/" className="flex flex-col leading-none">
           <span className="text-[30px] font-extrabold tracking-tight text-primary">
             EOSS
@@ -45,7 +45,7 @@ export function HeaderShell({
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-9 md:flex">
           {items.map((item) => (
             <Link
               key={item._id}

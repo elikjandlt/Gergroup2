@@ -9,23 +9,21 @@ export function LanguageSwitcher({ locales }: { locales: readonly string[] }) {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center gap-1 text-sm font-medium text-foreground">
-      {locales.map((l, index) => (
-        <span key={l} className="flex items-center">
-          <Link
-            href={pathname}
-            locale={l}
-            className={cn(
-              "px-1 transition-colors hover:text-primary",
-              l === locale ? "text-primary font-semibold" : "text-foreground/70"
-            )}
-          >
-            {l.toUpperCase()}
-          </Link>
-          {index < locales.length - 1 && (
-            <span className="text-foreground/40">/</span>
+    <div className="flex items-center gap-3 text-sm font-medium">
+      {locales.map((l) => (
+        <Link
+          key={l}
+          href={pathname}
+          locale={l}
+          className={cn(
+            "px-2.5 py-1 transition-colors",
+            l === locale
+              ? "bg-primary font-semibold text-white"
+              : "text-foreground/70 hover:text-primary"
           )}
-        </span>
+        >
+          {l.toUpperCase()}
+        </Link>
       ))}
     </div>
   );

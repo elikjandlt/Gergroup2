@@ -28,7 +28,7 @@ export interface Stat {
   readonly _id: string;
   readonly value: string;
   readonly label: string;
-  readonly icon: string;
+  readonly description: string;
 }
 
 const productsByLocale: Record<string, Product[]> = {
@@ -296,16 +296,16 @@ const heroSlidesByLocale: Record<string, HeroSlide[]> = {
 
 const statsByLocale: Record<string, Stat[]> = {
   mn: [
-    { _id: "stat-1", value: "15+", label: "Жилийн туршлага", icon: "award" },
-    { _id: "stat-2", value: "200+", label: "Гүйцэтгэсэн төсөл", icon: "building" },
-    { _id: "stat-3", value: "50+", label: "Бүтээгдэхүүний сери", icon: "layers" },
-    { _id: "stat-4", value: "2", label: "Улс орон", icon: "globe" },
+    { _id: "stat-1", value: "15+", label: "Туршлага", description: "Жилийн туршлага" },
+    { _id: "stat-2", value: "200+", label: "Төслүүд", description: "Гүйцэтгэсэн төсөл" },
+    { _id: "stat-3", value: "50+", label: "Сери", description: "Бүтээгдэхүүний сери" },
+    { _id: "stat-4", value: "2", label: "Улс орон", description: "Улс оронд үйл ажиллагаа" },
   ],
   en: [
-    { _id: "stat-1", value: "15+", label: "Years of experience", icon: "award" },
-    { _id: "stat-2", value: "200+", label: "Projects completed", icon: "building" },
-    { _id: "stat-3", value: "50+", label: "Product series", icon: "layers" },
-    { _id: "stat-4", value: "2", label: "Countries", icon: "globe" },
+    { _id: "stat-1", value: "15+", label: "Experience", description: "Years of experience" },
+    { _id: "stat-2", value: "200+", label: "Projects", description: "Projects completed" },
+    { _id: "stat-3", value: "50+", label: "Series", description: "Product series" },
+    { _id: "stat-4", value: "2", label: "Countries", description: "Countries of operation" },
   ],
 };
 
