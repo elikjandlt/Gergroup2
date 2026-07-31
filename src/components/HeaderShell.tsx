@@ -51,7 +51,7 @@ export function HeaderShell({
               key={item._id}
               href={item.url}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
+                "text-sm font-bold transition-colors hover:text-primary",
                 pathname === item.url ? "text-primary" : "text-foreground"
               )}
             >
