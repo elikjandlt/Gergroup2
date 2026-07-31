@@ -41,7 +41,11 @@ export default async function BlogPage({
     <>
       <PageHeader
         title={page.name ?? ""}
-        description={isMn ? "Нүүр / Мэдээлэл" : "Home / News"}
+        description={
+          isMn
+            ? "Салбарын мэдээ, технологийн тренд, компанийн мэдээлэл"
+            : "Industry news, tech trends and company updates"
+        }
         image="/images/hero-3.png"
       />
       <BlogGrid posts={posts} />

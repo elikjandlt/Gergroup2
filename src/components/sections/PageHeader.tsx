@@ -10,31 +10,29 @@ interface PageHeaderProps {
 export default function PageHeader({ title, description, image }: PageHeaderProps) {
   if (image) {
     return (
-      <section className="bg-[#F5F7FA] pt-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 py-12 lg:grid-cols-2 lg:gap-16 lg:py-16">
-            <FadeIn>
-              <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl lg:text-[42px]">
-                {title}
-              </h1>
-              {description && (
-                <p className="mt-4 max-w-2xl text-sm text-muted-foreground">
-                  {description}
-                </p>
-              )}
+      <section className="relative flex min-h-[420px] items-center justify-center overflow-hidden pt-20">
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="relative z-10 mx-auto max-w-4xl px-4 py-20 text-center sm:px-6">
+          <FadeIn>
+            <h1 className="text-3xl font-extrabold uppercase tracking-wide text-white sm:text-4xl lg:text-[48px]">
+              {title}
+            </h1>
+          </FadeIn>
+          {description && (
+            <FadeIn delay={0.1}>
+              <p className="mx-auto mt-5 max-w-2xl text-base font-light text-white/85 sm:text-lg">
+                {description}
+              </p>
             </FadeIn>
-            <FadeIn direction="right">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={image}
-                  alt={title}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </FadeIn>
-          </div>
+          )}
         </div>
       </section>
     );

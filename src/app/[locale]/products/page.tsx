@@ -36,8 +36,12 @@ export default async function ProductsPage({
     <>
       <PageHeader
         title={page.name ?? ""}
-        description={isMn ? "Нүүр / Бүтээгдэхүүн" : "Home / Products"}
-        image="/images/product-3.png"
+        description={
+          isMn
+            ? "Олон улсын шилдэг технологи, Монголын зах зээлд"
+            : "World-class technology for the Mongolian market"
+        }
+        image="/images/hero-2.png"
       />
       <ProductList categories={categories} items={items} locale={locale} />
       <CtaSection locale={locale} />

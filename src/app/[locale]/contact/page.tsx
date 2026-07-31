@@ -32,7 +32,11 @@ export default async function ContactPage({
     <>
       <PageHeader
         title={page.name ?? ""}
-        description={isMn ? "Нүүр / Холбоо барих" : "Home / Contact"}
+        description={
+          isMn
+            ? "Бидэнтэй холбоо бариж, үнийн санал аваарай"
+            : "Get in touch and request a quote"
+        }
         image="/images/hero-1.png"
       />
 

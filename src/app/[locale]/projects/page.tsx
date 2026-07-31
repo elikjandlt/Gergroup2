@@ -35,8 +35,12 @@ export default async function ProjectsPage({
     <>
       <PageHeader
         title={page.name ?? ""}
-        description={isMn ? "Нүүр / Төслүүд" : "Home / Projects"}
-        image="/images/hero-2.png"
+        description={
+          isMn
+            ? "EOSS системээр баригдсан онцлох барилгууд"
+            : "Notable buildings built with EOSS systems"
+        }
+        image="/images/product-4.png"
       />
 
       <section className="bg-background py-16">

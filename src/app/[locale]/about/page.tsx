@@ -65,7 +65,11 @@ export default async function AboutPage({
     <>
       <PageHeader
         title={page.name ?? ""}
-        description={isMn ? "Нүүр / Бидний тухай" : "Home / About"}
+        description={
+          isMn
+            ? "Монголын барилгын салбарт итгэл үнэмшилтэй түнш"
+            : "A Trusted Partner in Mongolia's Construction Sector"
+        }
         image="/images/about-intro.png"
       />
 
