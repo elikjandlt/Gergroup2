@@ -62,13 +62,13 @@ export default function HeroSlider({ slides, keywords }: HeroSliderProps) {
             variants={prefersReduced ? { hidden: {}, visible: {} } : heroText}
             className="flex max-w-4xl flex-col items-start"
           >
-            <h1 className="text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-[72px]">
+            <h1 className="text-3xl font-extrabold leading-[1.15] text-white sm:text-4xl lg:text-[44px]">
               {current.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-white/85 sm:text-lg">
+            <p className="mt-5 max-w-2xl text-sm font-light leading-relaxed text-white/85 sm:text-base">
               {current.subtitle}
             </p>
-            <div className="mt-12 flex items-center gap-6 sm:gap-8">
+            <div className="mt-8 flex items-center gap-6 sm:gap-8">
               {keywords.map((keyword, i) => (
                 <span key={keyword} className="flex items-center gap-6 sm:gap-8">
                   {i > 0 && <span className="h-px w-8 bg-white/50 sm:w-12" />}

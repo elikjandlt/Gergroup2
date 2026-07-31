@@ -22,13 +22,13 @@ export default function PageHeader({ title, description, image }: PageHeaderProp
         <div className="absolute inset-0 bg-black/55" />
         <div className="relative z-10 mx-auto max-w-4xl px-4 py-20 text-center sm:px-6">
           <FadeIn>
-            <h1 className="text-3xl font-extrabold uppercase tracking-wide text-white sm:text-4xl lg:text-[48px]">
+            <h1 className="text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl lg:text-4xl">
               {title}
             </h1>
           </FadeIn>
           {description && (
             <FadeIn delay={0.1}>
-              <p className="mx-auto mt-5 max-w-2xl text-base font-light text-white/85 sm:text-lg">
+              <p className="mx-auto mt-4 max-w-2xl text-sm font-light text-white/85 sm:text-base">
                 {description}
               </p>
             </FadeIn>
