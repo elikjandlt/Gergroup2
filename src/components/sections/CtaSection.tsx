@@ -22,12 +22,12 @@ export default function CtaSection({ locale }: CtaSectionProps) {
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <FadeIn>
             <div className="text-white">
-              <h2 className="mb-5 text-3xl font-extrabold leading-tight lg:text-5xl">{title}</h2>
-              <p className="text-lg text-white/90">{subtitle}</p>
-              <div className="mt-8">
+              <h2 className="mb-4 text-2xl font-extrabold leading-tight lg:text-3xl">{title}</h2>
+              <p className="text-base text-white/90">{subtitle}</p>
+              <div className="mt-7">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center bg-secondary px-10 py-4 text-sm font-bold text-white transition-colors hover:bg-secondary/90"
+                  className="inline-flex items-center bg-secondary px-8 py-3 text-sm font-bold text-white transition-colors hover:bg-secondary/90"
                 >
                   {cta}
                 </Link>
