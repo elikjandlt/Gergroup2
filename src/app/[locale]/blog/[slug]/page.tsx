@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
-import { getServerApolloClient } from "@/lib/apollo/server-client";
+import { safeQuery } from "@/lib/apollo/server-client";
 import { CP_POSTS, CP_POST, type CpPostData, type CpPostsData } from "@/graphql/cms/queries/post";
 import { routing } from "@/i18n/routing";
 import PageHeader from "@/components/sections/PageHeader";
@@ -21,20 +21,24 @@ function makeStaticClient() {
 }
 
 export async function generateStaticParams() {
-  const results = await Promise.all(
-    routing.locales.map(async (locale) => {
-      const client = makeStaticClient();
-      const { data } = await client.query<CpPostsData>({
-        query: CP_POSTS,
-        variables: { language: locale, status: "published" },
-      });
-      return (data?.cpPosts ?? []).map((post) => ({
-        locale,
-        slug: post.slug,
-      }));
-    })
-  );
-  return results.flat();
+  try {
+    const results = await Promise.all(
+      routing.locales.map(async (locale) => {
+        const client = makeStaticClient();
+        const { data } = await client.query<CpPostsData>({
+          query: CP_POSTS,
+          variables: { language: locale, status: "published" },
+        });
+        return (data?.cpPosts ?? []).map((post) => ({
+          locale,
+          slug: post.slug,
+        }));
+      })
+    );
+    return results.flat();
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({
@@ -43,10 +47,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const client = await getServerApolloClient();
-  const { data } = await client.query<CpPostData>({
-    query: CP_POST,
-    variables: { slug, language: locale },
+  const data = await safeQuery<CpPostData>(CP_POST, {
+    slug,
+    language: locale,
   });
   const post = data?.cpPost;
   return {
@@ -61,11 +64,9 @@ export default async function PostPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const client = await getServerApolloClient();
-  const { data } = await client.query<CpPostData>({
-    query: CP_POST,
-    variables: { slug, language: locale },
-    context: { fetchOptions: { next: { revalidate: 60 } } },
+  const data = await safeQuery<CpPostData>(CP_POST, {
+    slug,
+    language: locale,
   });
   const post = data?.cpPost;
   if (!post) notFound();

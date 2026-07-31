@@ -1,4 +1,4 @@
-import { getServerApolloClient } from "@/lib/apollo/server-client";
+import { safeQuery } from "@/lib/apollo/server-client";
 import { CP_PAGES, type CpPagesData } from "@/graphql/cms/queries/page";
 import { getHeroSlides, getStats, getProducts } from "@/lib/mock/data";
 import HeroSlider from "@/components/sections/HeroSlider";
@@ -13,15 +13,11 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const client = await getServerApolloClient();
-  const { data } = await client.query<CpPagesData>({
-    query: CP_PAGES,
-    variables: { language: locale },
-    context: { fetchOptions: { next: { revalidate: 60 } } },
-  });
+  const data = await safeQuery<CpPagesData>(CP_PAGES, { language: locale });
 
   const pages = data?.cpPages ?? [];
   const aboutPage = pages.find((p) => p.slug === "about");
+  void aboutPage;
 
   const slides = getHeroSlides(locale);
   const stats = getStats(locale);

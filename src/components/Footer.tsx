@@ -1,13 +1,11 @@
-import { getServerApolloClient } from "@/lib/apollo/server-client";
+import { safeQuery } from "@/lib/apollo/server-client";
 import { CP_MENUS, type CpMenusData } from "@/graphql/cms/queries/menu";
 import FooterClient from "./FooterClient";
 
 export default async function Footer({ locale }: { locale: string }) {
-  const client = await getServerApolloClient();
-  const { data } = await client.query<CpMenusData>({
-    query: CP_MENUS,
-    variables: { language: locale, kind: "footer" },
-    context: { fetchOptions: { next: { revalidate: 60 } } },
+  const data = await safeQuery<CpMenusData>(CP_MENUS, {
+    language: locale,
+    kind: "footer",
   });
 
   const menu = (data?.cpMenus ?? [])

@@ -1,4 +1,5 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import type { DocumentNode } from "graphql";
 import { cookies } from "next/headers";
 
 const ERXES_ENDPOINT =
@@ -26,4 +27,21 @@ export async function getServerApolloClient() {
     }),
     cache: new InMemoryCache(),
   });
+}
+
+export async function safeQuery<TData>(
+  query: DocumentNode,
+  variables?: Record<string, unknown>
+): Promise<TData | null> {
+  try {
+    const client = await getServerApolloClient();
+    const { data } = await client.query<TData>({
+      query,
+      variables,
+      context: { fetchOptions: { next: { revalidate: 60 } } },
+    });
+    return data ?? null;
+  } catch {
+    return null;
+  }
 }

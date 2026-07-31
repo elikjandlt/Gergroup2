@@ -1,6 +1,5 @@
-import { notFound } from "next/navigation";
-import { getServerApolloClient } from "@/lib/apollo/server-client";
-import { CP_PAGES, type CpPagesData } from "@/graphql/cms/queries/page";
+import { safeQuery } from "@/lib/apollo/server-client";
+import { CP_PAGES, type CpPagesData, type Page } from "@/graphql/cms/queries/page";
 import { CP_POSTS, type CpPostsData } from "@/graphql/cms/queries/post";
 import PageHeader from "@/components/sections/PageHeader";
 import BlogGrid from "@/components/sections/BlogGrid";
@@ -18,24 +17,20 @@ export default async function BlogPage({
 }) {
   const { locale } = await params;
   const isMn = locale === "mn";
-  const client = await getServerApolloClient();
   const [pagesRes, postsRes] = await Promise.all([
-    client.query<CpPagesData>({
-      query: CP_PAGES,
-      variables: { language: locale },
-      context: { fetchOptions: { next: { revalidate: 60 } } },
-    }),
-    client.query<CpPostsData>({
-      query: CP_POSTS,
-      variables: { language: locale, status: "published" },
-      context: { fetchOptions: { next: { revalidate: 60 } } },
-    }),
+    safeQuery<CpPagesData>(CP_PAGES, { language: locale }),
+    safeQuery<CpPostsData>(CP_POSTS, { language: locale, status: "published" }),
   ]);
 
-  const page = pagesRes.data?.cpPages?.find((p) => p.slug === "blog");
-  if (!page) notFound();
+  const page =
+    pagesRes?.cpPages?.find((p) => p.slug === "blog") ??
+    ({
+      _id: "fallback-blog",
+      name: isMn ? "Мэдээлэл" : "News",
+      slug: "blog",
+    } as Page);
 
-  const posts = postsRes.data?.cpPosts ?? [];
+  const posts = postsRes?.cpPosts ?? [];
 
   return (
     <>

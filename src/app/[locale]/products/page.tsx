@@ -1,6 +1,5 @@
-import { notFound } from "next/navigation";
-import { getServerApolloClient } from "@/lib/apollo/server-client";
-import { CP_PAGES, type CpPagesData } from "@/graphql/cms/queries/page";
+import { safeQuery } from "@/lib/apollo/server-client";
+import { CP_PAGES, type CpPagesData, type Page } from "@/graphql/cms/queries/page";
 import { getProductCategories, getProductItems } from "@/lib/mock/data";
 import PageHeader from "@/components/sections/PageHeader";
 import ProductList from "@/components/sections/ProductList";
@@ -20,14 +19,14 @@ export default async function ProductsPage({
 }) {
   const { locale } = await params;
   const isMn = locale === "mn";
-  const client = await getServerApolloClient();
-  const { data } = await client.query<CpPagesData>({
-    query: CP_PAGES,
-    variables: { language: locale },
-    context: { fetchOptions: { next: { revalidate: 60 } } },
-  });
-  const page = data?.cpPages?.find((p) => p.slug === "products");
-  if (!page) notFound();
+  const data = await safeQuery<CpPagesData>(CP_PAGES, { language: locale });
+  const page =
+    data?.cpPages?.find((p) => p.slug === "products") ??
+    ({
+      _id: "fallback-products",
+      name: isMn ? "Бүтээгдэхүүн" : "Products",
+      slug: "products",
+    } as Page);
 
   const categories = getProductCategories(locale);
   const items = getProductItems(locale);

@@ -1,6 +1,5 @@
-import { notFound } from "next/navigation";
-import { getServerApolloClient } from "@/lib/apollo/server-client";
-import { CP_PAGES, type CpPagesData } from "@/graphql/cms/queries/page";
+import { safeQuery } from "@/lib/apollo/server-client";
+import { CP_PAGES, type CpPagesData, type Page } from "@/graphql/cms/queries/page";
 import PageHeader from "@/components/sections/PageHeader";
 import ContactForm from "@/components/sections/ContactForm";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
@@ -17,16 +16,15 @@ export default async function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const client = await getServerApolloClient();
-  const { data } = await client.query<CpPagesData>({
-    query: CP_PAGES,
-    variables: { language: locale },
-    context: { fetchOptions: { next: { revalidate: 60 } } },
-  });
-  const page = data?.cpPages?.find((p) => p.slug === "contact");
-  if (!page) notFound();
-
   const isMn = locale === "mn";
+  const data = await safeQuery<CpPagesData>(CP_PAGES, { language: locale });
+  const page =
+    data?.cpPages?.find((p) => p.slug === "contact") ??
+    ({
+      _id: "fallback-contact",
+      name: isMn ? "Холбоо барих" : "Contact",
+      slug: "contact",
+    } as Page);
 
   return (
     <>

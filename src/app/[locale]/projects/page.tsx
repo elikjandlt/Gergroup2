@@ -1,6 +1,5 @@
-import { notFound } from "next/navigation";
-import { getServerApolloClient } from "@/lib/apollo/server-client";
-import { CP_PAGES, type CpPagesData } from "@/graphql/cms/queries/page";
+import { safeQuery } from "@/lib/apollo/server-client";
+import { CP_PAGES, type CpPagesData, type Page } from "@/graphql/cms/queries/page";
 import { getProjects } from "@/lib/mock/data";
 import PageHeader from "@/components/sections/PageHeader";
 import ProjectGrid from "@/components/sections/ProjectGrid";
@@ -20,14 +19,14 @@ export default async function ProjectsPage({
 }) {
   const { locale } = await params;
   const isMn = locale === "mn";
-  const client = await getServerApolloClient();
-  const { data } = await client.query<CpPagesData>({
-    query: CP_PAGES,
-    variables: { language: locale },
-    context: { fetchOptions: { next: { revalidate: 60 } } },
-  });
-  const page = data?.cpPages?.find((p) => p.slug === "projects");
-  if (!page) notFound();
+  const data = await safeQuery<CpPagesData>(CP_PAGES, { language: locale });
+  const page =
+    data?.cpPages?.find((p) => p.slug === "projects") ??
+    ({
+      _id: "fallback-projects",
+      name: isMn ? "Төслүүд" : "Projects",
+      slug: "projects",
+    } as Page);
 
   const projects = getProjects(locale);
 
