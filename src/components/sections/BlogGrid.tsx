@@ -2,6 +2,7 @@ import { Link } from "@/i18n/routing";
 import Image from "@/components/common/Image";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
+import { fallbackBlogImage } from "@/lib/blog-image";
 
 interface BlogGridPost {
   readonly _id: string;
@@ -27,7 +28,9 @@ export default function BlogGrid({ posts }: BlogGridProps) {
             const category =
               post.category?.name ?? post.categories?.[0]?.name ?? "";
             const image =
-              post.thumbnail?.url ?? post.featuredImage?.url ?? null;
+              post.thumbnail?.url ??
+              post.featuredImage?.url ??
+              fallbackBlogImage(post.slug);
             return (
               <StaggerItem key={post._id}>
                 <Link
