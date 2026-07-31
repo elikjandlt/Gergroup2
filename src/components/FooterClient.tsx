@@ -41,8 +41,8 @@ export default function FooterClient({ menu, locale }: FooterProps) {
 
   return (
     <footer className="bg-[#353F4C] text-white">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <div className="flex flex-col leading-none">
               <span className="text-[22px] font-extrabold text-primary">EOSS</span>
@@ -56,8 +56,8 @@ export default function FooterClient({ menu, locale }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="mb-5 text-sm font-semibold uppercase tracking-wider">{productsLabel}</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">{productsLabel}</h3>
+            <ul className="space-y-2">
               {productItems.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -72,8 +72,8 @@ export default function FooterClient({ menu, locale }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="mb-5 text-sm font-semibold uppercase tracking-wider">{companyLabel}</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">{companyLabel}</h3>
+            <ul className="space-y-2">
               {companyItems.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -88,8 +88,8 @@ export default function FooterClient({ menu, locale }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="mb-5 text-sm font-semibold uppercase tracking-wider">{contactLabel}</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">{contactLabel}</h3>
+            <ul className="space-y-2">
               {contactItems.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -104,7 +104,7 @@ export default function FooterClient({ menu, locale }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm text-white/50">
+        <div className="mt-8 border-t border-white/10 pt-6 text-center text-sm text-white/50">
           © {new Date().getFullYear()} EOSS Mongolia. {rights}.
         </div>
       </div>
